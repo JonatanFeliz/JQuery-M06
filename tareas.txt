@@ -1,0 +1,14 @@
+1. Hacer una peticion ajax desde JQuery a nodejs, que este se 
+conecte a MySQL y devuelva las entradas de la BD.
+
+2. Guardar las entradas de la BD en un objeto accountObj y
+mostrarlas en el html (insertar campos des de JQuery)
+
+3. Hacer que el campo entry date sea datepicker y ponerlo en catalan
+
+4. Configurar boton modify {
+    1. Guardar objetos accountObj en LocalStorage
+    2. Enviar entradas modificadas
+    3. Actualizar base de datos
+    4. Mostrar ventana de carga
+}
