@@ -3,18 +3,22 @@
 const express = require('express')
 const bodyParser=require('body-parser')
 const app=express()
+
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, 	X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-	Method');
+	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, 	DELETE');
+	res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+	next();
+});
+
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
 
 const mysql = require('mysql');
 
-var con = mysql.createConnection({
-    host: "localhost",
-    database: "clients",
-    user: "root",
-    password: ""
-});
+
 
 /*con.connect(function(err) {
     if (err) throw err;
@@ -28,6 +32,13 @@ var con = mysql.createConnection({
 app.get('/',(req,res)=>{
   console.log("hola");
 
+  var con = mysql.createConnection({
+    host: "localhost",
+    database: "clients",
+    user: "root",
+    password: ""
+});
+
   con.connect(function(err) {
     console.log("Este " + err);
     
@@ -40,7 +51,9 @@ app.get('/',(req,res)=>{
 
     con.query("SELECT * FROM CURRENT_ACCOUNT", function (err, result, fields) {
       if (err) throw err;
-      console.log(JSON.stringify(result));
+      var json = JSON.stringify(result);
+      console.log(json);
+      res.send(json);
     });
     
     con.end();
