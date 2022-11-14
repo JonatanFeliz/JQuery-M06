@@ -1,5 +1,5 @@
 $().ready(function(){
-    
+
     //get
     $.ajax({
         url: 'http://localhost:3000/getClients',
@@ -7,7 +7,7 @@ $().ready(function(){
         dataType: 'json',
 
         success : function(data) {
-            console.log(data);
+            //console.log(data);
 
             load_account(data);
         },
@@ -42,15 +42,55 @@ function load_account(data) {
     //console.log(data);
 
     $.each(data, function( i, value ) {
-        var dni=value.DNI;
-        $("#dni").append("<input type='text' placeholder='" + value.DNI + "'>")
-        $("#name").append("<input type='text' placeholder='" + value.NAME + "'>")
-        $("#type_account").append("<select ><option>"+ value.ACCOUNT_TYPE + "</option> <option>Savings account</option><option>Investement account</option><option>Personal account</option><option>Individual Savings Account</option><option>Solidary account</option><option>Fixed deposit account</option><option>Tax-Free Savings Account</option></select>")
-        $("#amount").append("<input type='text' placeholder='" + value.AMOUNT + "'> <br>")
-        $("#type_client").append("<input type='text' placeholder='" + value.CLIENT_TYPE + "' readonly> <br>")
-        $("#entry_date").append("<input type='text' placeholder='" + value.ENTRY_DATE + "'> <br>")
-      });
+        i++;
+        
+        //variables amb nom dels camps
+        var position_dni     = "#dni" + i;
+        var position_name    = "#name" + i;
+        var position_account = "#account-type" + i; 
+        var position_amount  = "#amount" + i;
+        var position_client  = "#client-type" + i;
+        var position_date    = "#date" + i;
+
+        //Introduïr els valor de la BD als camps
+        $(position_dni).val(value.DNI);
+        $(position_name).val(value.NAME);
+        $(position_account).append("<option>"+ value.ACCOUNT_TYPE + "</option> <option>Savings account</option><option>Investement account</option><option>Personal account</option><option>Individual Savings Account</option><option>Solidary account</option><option>Fixed deposit account</option><option>Tax-Free Savings Account</option>")
+        $(position_account + " option:selected").attr('disabled','disabled').siblings().removeAttr('disabled');
+        $(position_amount).val(value.AMOUNT);
+        $(position_client).val(value.CLIENT_TYPE);
+
+        //datepicker
+        $(function() {
+
+            // Inicialitzar i carregar el llenguatge a catala
+            $('#datepicker').datepicker( $.datepicker.regional[ "ca" ] );
+        
+          });
+        $(function(){
+            $(position_date).datepicker({
+                dateFormat: "mm-dd-yy",
+                maxDate: "-1"
+            });
+        })
+        $(position_date).val(transform_date(value.ENTRY_DATE));
+
+        
+        
+    });
 
 }
 
-//crear las tablas (inputs) manualmente i meter cada una en un div, asi recibe el inline block
+function transform_date(date){
+    var ObjectDate = new Date(date);
+
+    var day = ObjectDate.getDate();
+
+    var month = ObjectDate.getMonth();
+
+    var year = ObjectDate.getFullYear();
+
+    //console.log((month+1) + "/" + day + "/" + year);
+
+    return (month+1) + "/" + day + "/" + year;
+}

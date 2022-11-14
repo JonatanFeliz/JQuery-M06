@@ -4,10 +4,14 @@
     padding: 6px;
     border: 1px solid green;
     border-radius: 5px;
+    display: block;
 }
-#dni{
+.same-line{
     display: inline-block;
 }
-#name{
-    display: inline-block;
+
+.space{
+    margin-left: 20px;
 }
+
+

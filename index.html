@@ -16,38 +16,98 @@
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <script src="vendor/jQuery/datepicker-ca.js"></script>
         <script src="js/index.js"></script>
-        <script>
-            $( function() {
-              $( "#datepicker" ).datepicker();
-            } );
-        </script>
     </head>
     <body>
-        <h2>Aquestes són les comptes del teu banc</h2> 
-        <h3>Informació del formulari</h3>
+        <h2>These are the account of your bank</h2> 
+        <h3>Form information</h3>
 
-        <div>
+        <div id="dni" class="same-line space">
             <p>DNI</p>
-            <p id="dni"></p>
-            <p>Nom</p>
-            <p id="name"></p>
-            <p>Tipus de compte</p>
-            <p id="type_account"></p>
-            <p>Monto</p>
-            <p id="amount"></p>
-            <p>Tipus de client</p>
-            <p id="type_client"></p>
-            <p>Data d'entrada</p>
-            <p id="date_entry"></p>
+            <input type="text" id="dni1"><br>
+            <input type="text" id="dni2"><br>
+            <input type="text" id="dni3"><br>
+            <input type="text" id="dni4"><br>
+            <input type="text" id="dni5"><br>
+            <input type="text" id="dni6"><br>
+            <input type="text" id="dni7"><br>
+            <input type="text" id="dni8"><br>
+            <input type="text" id="dni9"><br>
+            <input type="text" id="dni10"><br>
         </div>
 
-        <div id="columns">
-            
+        <div id="name" class="same-line space">
+            <p>Name</p>
+            <input type="text" id="name1"><br>
+            <input type="text" id="name2"><br>
+            <input type="text" id="name3"><br>
+            <input type="text" id="name4"><br>
+            <input type="text" id="name5"><br>
+            <input type="text" id="name6"><br>
+            <input type="text" id="name7"><br>
+            <input type="text" id="name8"><br>
+            <input type="text" id="name9"><br>
+            <input type="text" id="name10"><br>
         </div>
+        
+        <div id="account-type" class="same-line space">
+            <p>Account type</p>
+            <select id="account-type2"></select><br>
+            <select id="account-type1"></select><br>
+            <select id="account-type3"></select><br>
+            <select id="account-type4"></select><br>
+            <select id="account-type5"></select><br>
+            <select id="account-type6"></select><br>
+            <select id="account-type7"></select><br>
+            <select id="account-type8"></select><br>
+            <select id="account-type9"></select><br>
+            <select id="account-type10"></select><br>
+        </div>
+        
+        <div id="amount" class="same-line space">
+            <p>Amount</p>
+            <input type="text" id="amount1"><br>
+            <input type="text" id="amount2"><br>
+            <input type="text" id="amount3"><br>
+            <input type="text" id="amount4"><br>
+            <input type="text" id="amount5"><br>
+            <input type="text" id="amount6"><br>
+            <input type="text" id="amount7"><br>
+            <input type="text" id="amount8"><br>
+            <input type="text" id="amount9"><br>
+            <input type="text" id="amount10"><br>
+        </div>
+        
+        <div id="client-type" class="same-line space">
+            <p>Client type</p>
+            <input type="text" id="client-type1" disabled disabled><br>
+            <input type="text" id="client-type3" disabled><br>
+            <input type="text" id="client-type2" disabled><br>
+            <input type="text" id="client-type4" disabled><br>
+            <input type="text" id="client-type5" disabled><br>
+            <input type="text" id="client-type6" disabled><br>
+            <input type="text" id="client-type7" disabled><br>
+            <input type="text" id="client-type8" disabled><br>
+            <input type="text" id="client-type9" disabled><br>
+            <input type="text" id="client-type10" disabled><br>
+        </div>
+        
+        <div id="date" class="same-line space">
+            <p>Entry data</p>
+            <input type="text" id="date1"><br>
+            <input type="text" id="date2"><br>
+            <input type="text" id="date3"><br>
+            <input type="text" id="date4"><br>
+            <input type="text" id="date5"><br>
+            <input type="text" id="date6"><br>
+            <input type="text" id="date7"><br>
+            <input type="text" id="date8"><br>
+            <input type="text" id="date9"><br>
+            <input type="text" id="date10"><br>
+        </div>
+        <br><br>
+        <input type="button" class="space" id="modify" value="Modificar comptes">
 
-        <input type="button" id="modify" value="Modificar comptes">
-
-        <p id="prueba"></p>
     </body>
 </html>
