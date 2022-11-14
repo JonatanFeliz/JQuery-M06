@@ -12,7 +12,16 @@
         <script src="js/classes/typeClient.js"></script>
         <script src="js/classes/objectAccount.js"></script>
         <script src="js/validations.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script src="js/index.js"></script>
+        <script>
+            $( function() {
+              $( "#datepicker" ).datepicker();
+            } );
+        </script>
     </head>
     <body>
         <h2>Aquestes són les comptes del teu banc</h2> 
@@ -20,11 +29,21 @@
 
         <div>
             <p>DNI</p>
+            <p id="dni"></p>
             <p>Nom</p>
+            <p id="name"></p>
             <p>Tipus de compte</p>
+            <p id="type_account"></p>
             <p>Monto</p>
+            <p id="amount"></p>
             <p>Tipus de client</p>
-            <p>Date d'entrada</p>
+            <p id="type_client"></p>
+            <p>Data d'entrada</p>
+            <p id="date_entry"></p>
+        </div>
+
+        <div id="columns">
+            
         </div>
 
         <input type="button" id="modify" value="Modificar comptes">

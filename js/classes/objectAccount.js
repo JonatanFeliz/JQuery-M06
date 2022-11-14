@@ -1,7 +1,7 @@
 class accountObj {
     //atributs privats
     #id;
-    
+    #accountTypeObj;
     #fullNameClient;
     #DNIClient;
     #amount;

@@ -5,3 +5,9 @@
     border: 1px solid green;
     border-radius: 5px;
 }
+#dni{
+    display: inline-block;
+}
+#name{
+    display: inline-block;
+}
