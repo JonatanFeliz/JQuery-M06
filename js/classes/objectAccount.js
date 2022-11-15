@@ -2,17 +2,20 @@ class accountObj {
     //atributs privats
     #id;
     #accountTypeObj;
+    #clientTypeObj;
     #fullNameClient;
     #DNIClient;
     #amount;
     #entryDate;
 
-    constructor(id,fullNameClient,DNIClient,amount,entryDate){ //constructor
+    constructor(id,fullNameClient,DNIClient,amount,entryDate,accountType,clientType,description){ //constructor
         this.#id = id;
         this.#fullNameClient = fullNameClient;
         this.#DNIClient = DNIClient;
         this.#amount = amount;
         this.#entryDate = entryDate;
+        this.#accountTypeObj = new accountTypeObj(id,accountType);
+        this.#clientTypeObj = new clientTypeObj(id,clientType,description);
     }
 
     //getters

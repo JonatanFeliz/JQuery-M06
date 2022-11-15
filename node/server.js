@@ -14,16 +14,6 @@ app.use(bodyParser.json())
 const mysql = require('mysql');
 
 
-
-/*con.connect(function(err) {
-    if (err) throw err;
-    con.query("SELECT * FROM CURRENT_ACCOUNT", function (err, result, fields) {
-      if (err) throw err;
-      console.log(result);
-    });
-});*/
-
-
 app.get('/getClients',(req,res)=>{
   console.log("hola");
 

@@ -15,8 +15,7 @@ function validation_mount(mount){
     if(isNaN(mount) == false && mount > 0) {
         return true;
     }
-    else
-    {return false;}
+    else {return false;}
 }
 
 function validation_DNI(dni){
@@ -46,22 +45,22 @@ function validation_DNI(dni){
     }
 }
 
-function validation_date(date){
-    var actualDate = new Date();
-    valuesStart=date.split("-");
+// function validation_date(date){
+//     var actualDate = new Date();
+//     valuesStart=date.split("-");
     
-    var dateGo = new Date(valuesStart[0],(valuesStart[1]-1),valuesStart[2]);
-    var diference = dateGo.getTime()-actualDate.getTime();
+//     var dateGo = new Date(valuesStart[0],(valuesStart[1]-1),valuesStart[2]);
+//     var diference = dateGo.getTime()-actualDate.getTime();
 
-    diference = diference/(1000*60*60*24*30);
-    console.log(valuesStart);
+//     diference = diference/(1000*60*60*24*30);
+//     console.log(valuesStart);
 
-    if(diference>0){
-        console.log("esta mal");
-        return false;
+//     if(diference>0){
+//         console.log("esta mal");
+//         return false;
 
-    }else{
-        return true;
+//     }else{
+//         return true;
 
-    }
-}
+//     }
+// }

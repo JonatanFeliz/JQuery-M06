@@ -1,6 +1,7 @@
+var accounts = [];
 $().ready(function(){
 
-    //get
+    // peticio get
     $.ajax({
         url: 'http://localhost:3000/getClients',
         type: 'GET',
@@ -10,6 +11,8 @@ $().ready(function(){
             //console.log(data);
 
             load_account(data);
+
+            console.log(accounts);
         },
         error : function(jqXHR, status, error) {
             alert('Disculpe, existió un problema');
@@ -19,7 +22,7 @@ $().ready(function(){
         }
     })
 
-    //post
+    // peticio post
     // $.ajax({
     //     url: 'http://localhost:3000/',
     //     type: 'POST',
@@ -38,6 +41,11 @@ $().ready(function(){
 
 })
 
+/**
+ * 
+ * @param data 
+ * @return Object amb la informació de la base de dades 
+ */
 function load_account(data) {
     //console.log(data);
 
@@ -75,12 +83,18 @@ function load_account(data) {
         })
         $(position_date).val(transform_date(value.ENTRY_DATE));
 
-        
+        //afegir objecte a la variable global accounts
+        accounts.push(ObjAccount = new accountObj(i,value.DNI,value.DNI,value.AMOUNT,value.ENTRY_DATE,value.ACCOUNT_TYPE,value.CLIENT_TYPE,"Aquest es el meu compte"))
         
     });
 
 }
 
+/**
+ * 
+ * @param date 
+ * @returns Torna la data en format mm/dd/yyyy
+ */
 function transform_date(date){
     var ObjectDate = new Date(date);
 
@@ -90,7 +104,17 @@ function transform_date(date){
 
     var year = ObjectDate.getFullYear();
 
-    //console.log((month+1) + "/" + day + "/" + year);
-
     return (month+1) + "/" + day + "/" + year;
+}
+
+function validate_dni(dni){
+    
+}
+
+function validate_name(name){
+
+}
+
+function validate_amount(amount){
+    
 }
