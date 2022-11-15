@@ -36,7 +36,7 @@ app.get('/getClients',(req,res)=>{
     con.query("SELECT * FROM CURRENT_ACCOUNT", function (err, result, fields) {
       if (err) throw err;
       var json = JSON.stringify(result);
-      console.log(json);
+      //console.log(json);
       res.send(json);
     });
     

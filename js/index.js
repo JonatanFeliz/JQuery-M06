@@ -1,4 +1,6 @@
 var accounts = [];
+
+
 $().ready(function(){
 
     // peticio get
@@ -44,25 +46,58 @@ $().ready(function(){
 
     // Accions del boto
     $("#modify").click(()=>{
+        accounts = [];
 
+        class_length = $(".monto").length;
+
+        for (let i = 1; i < class_length+1; i++) {
+            var position_dni     = "#dni" + i;
+            var position_name    = "#name" + i;
+            var position_account = "#account-type" + i; 
+            var position_amount  = "#amount" + i;
+            var position_client  = "#client-type" + i;
+            var position_date    = "#date" + i;
+
+            var dni        = $(position_dni).val();
+            var name       = $(position_name).val();
+            var accounType = $(position_account + " option:selected").val();
+            var amount     = $(position_amount).val();
+            var clientType = $(position_client).val();
+            var entryDate  = $(position_date).val();
+
+            accounts.push(ObjAccount = new accountObj(i,dni,name,amount,entryDate,accounType,clientType,"Aquest es el meu compte"))
+        }
+        console.log(accounts);
+
+        // var json_accounts = JSON.parse(accounts);
+        
+        // console.log(json_accounts);
+        // localStorage.setItem("storageAccounts",JSON.stringify(json_accounts));
+
+
+        // console.log(JSON.parse(localStorage.getItem("storageAccounts")));
+
+
+
+        //peticio post
+        $.ajax({
+            url: 'http://localhost:3000/send',
+            data: '',
+            type: 'POST',
+            dataType: 'json',
+
+            success : function(msg) {
+                console.log("Operacio " + msg);
+            },
+            error : function(jqXHR, status, error) {
+                alert('Disculpe, existió un problema al enviar');
+            },
+            complete : function(jqXHR, status) {
+                alert('Petición realizada en post');
+            }
+        })
     })
 
-    // peticio post
-    // $.ajax({
-    //     url: 'http://localhost:3000/',
-    //     type: 'POST',
-    //     dataType: 'json',
-
-    //     success : function(data) {
-    //         console.log(data);
-    //     },
-    //     error : function(jqXHR, status, error) {
-    //         alert('Disculpe, existió un problema');
-    //     },
-    //     complete : function(jqXHR, status) {
-    //         alert('Petición realizada');
-    //     }
-    // })
 
 })
 
@@ -128,7 +163,7 @@ function transform_date(date){
 
     var year  = ObjectDate.getFullYear();
 
-    return (month+1) + "/" + day + "/" + year;
+    return (month+1) + "-" + day + "-" + year;
 }
 
 /**
@@ -147,3 +182,10 @@ function changeTypeClient(amount){
         return "Very rich client";
     }
 }
+
+// Preguntas:
+
+// 1- Preguntar si al actualizar los objetos borramos la array y la volvemos a hacer o hacemos un push y lo añadimos
+// 2- Cada vez que guardemos en el local storage tenemos que borrar su contenido para no duplicar datos
+// 3- Como poner mi array de objetos dentro de un local storage, ya he intentado el json.stringyfi
+// 4- Como pasar nuestra array de objetos a JSON

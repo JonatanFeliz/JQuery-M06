@@ -3,12 +3,12 @@ class accountObj {
     #id;
     #accountTypeObj;
     #clientTypeObj;
-    #fullNameClient;
     #DNIClient;
+    #fullNameClient;
     #amount;
     #entryDate;
 
-    constructor(id,fullNameClient,DNIClient,amount,entryDate,accountType,clientType,description){ //constructor
+    constructor(id,DNIClient,fullNameClient,amount,entryDate,accountType,clientType,description){ //constructor
         this.#id = id;
         this.#fullNameClient = fullNameClient;
         this.#DNIClient = DNIClient;
