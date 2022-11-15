@@ -11,7 +11,7 @@ function validation_name(name){
     }
 }
 
-function validation_mount(mount){
+function validation_amount(mount){
     if(isNaN(mount) == false && mount > 0) {
         return true;
     }

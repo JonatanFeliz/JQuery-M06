@@ -8,11 +8,9 @@ $().ready(function(){
         dataType: 'json',
 
         success : function(data) {
-            //console.log(data);
 
             load_account(data);
 
-            console.log(accounts);
         },
         error : function(jqXHR, status, error) {
             alert('Disculpe, existió un problema');
@@ -20,6 +18,33 @@ $().ready(function(){
         complete : function(jqXHR, status) {
             alert('Petición realizada');
         }
+    })
+
+    //cambiar automaticament el camp client type
+    $(".monto").blur(()=>{
+
+        class_length = $(".monto").length;
+        
+        for (let i = 1; i < class_length+1; i++) {
+            var value_amount  = $("#amount" + i).val();
+            var position_client  = "#client-type" + i;
+
+            if(validation_amount(value_amount)){
+                var type = changeTypeClient(value_amount);
+
+                $(position_client).val(type);
+                $(position_client).css("border","1px solid green");
+            }
+            else{
+                $(position_client).css("border","1px solid red");
+                $(position_client).val("Incorrecte");
+            }
+        }
+    })
+
+    // Accions del boto
+    $("#modify").click(()=>{
+
     })
 
     // peticio post
@@ -47,7 +72,6 @@ $().ready(function(){
  * @return Object amb la informació de la base de dades 
  */
 function load_account(data) {
-    //console.log(data);
 
     $.each(data, function( i, value ) {
         i++;
@@ -98,23 +122,28 @@ function load_account(data) {
 function transform_date(date){
     var ObjectDate = new Date(date);
 
-    var day = ObjectDate.getDate();
+    var day   = ObjectDate.getDate();
 
     var month = ObjectDate.getMonth();
 
-    var year = ObjectDate.getFullYear();
+    var year  = ObjectDate.getFullYear();
 
     return (month+1) + "/" + day + "/" + year;
 }
 
-function validate_dni(dni){
-    
-}
-
-function validate_name(name){
-
-}
-
-function validate_amount(amount){
-    
+/**
+ * 
+ * @param amount 
+ * @returns Tipus de client en funció del diners que té 
+ */
+function changeTypeClient(amount){
+    if(amount <=10000 && amount > 0) {
+        return "Poor client";
+    }
+    else if(amount <=100000 && amount > 10000) {
+        return "Normal client";
+    }
+    else if(amount > 100000){
+        return "Very rich client";
+    }
 }

@@ -15,7 +15,6 @@ const mysql = require('mysql');
 
 
 app.get('/getClients',(req,res)=>{
-  console.log("hola");
 
   var con = mysql.createConnection({
     host: "localhost",
