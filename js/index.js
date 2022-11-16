@@ -1,4 +1,7 @@
 var accounts = [];
+var flag_amount;
+var flag_name;
+var flag_DNI;
 
 
 $().ready(function(){
@@ -50,6 +53,7 @@ $().ready(function(){
 
         class_length = $(".monto").length;
 
+
         for (let i = 1; i < class_length+1; i++) {
             var position_dni     = "#dni" + i;
             var position_name    = "#name" + i;
@@ -65,7 +69,11 @@ $().ready(function(){
             var clientType = $(position_client).val();
             var entryDate  = $(position_date).val();
 
-            accounts.push(ObjAccount = new accountObj(i,dni,name,amount,entryDate,accounType,clientType,"Aquest es el meu compte"))
+            validation_DNI(dni,position_dni);
+            validation_name(name,position_name);
+            validation_amount(amount,position_amount);
+
+            //accounts.push(new accountObj(i,dni,name,amount,entryDate,accounType,clientType,"Aquest es el meu compte"))
         }
         console.log(accounts);
 
