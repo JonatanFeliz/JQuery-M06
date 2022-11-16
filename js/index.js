@@ -1,4 +1,5 @@
 var accounts = [];
+var provisional_accounts = [];
 var flag_amount;
 var flag_name;
 var flag_DNI;
@@ -7,50 +8,15 @@ var flag_date;
 $().ready(function(){
 
     // peticio get
-    $.ajax({
-        url: 'http://localhost:3000/getClients',
-        type: 'GET',
-        dataType: 'json',
-
-        success : function(data) {
-
-            load_account(data);
-
-        },
-        error : function(jqXHR, status, error) {
-            alert('Disculpe, existió un problema');
-        },
-        complete : function(jqXHR, status) {
-            alert('Petición realizada');
-        }
-    })
+    get_petition();
 
     //cambiar automaticament el camp client type
-    $(".monto").blur(()=>{
-
-        class_length = $(".monto").length;
-        
-        for (let i = 1; i < class_length+1; i++) {
-            var value_amount  = $("#amount" + i).val();
-            var position_client  = "#client-type" + i;
-
-            if(validation_amount(value_amount)){
-                var type = changeTypeClient(value_amount);
-
-                $(position_client).val(type);
-                $(position_client).css("border","1px solid green");
-            }
-            else{
-                $(position_client).css("border","1px solid red");
-                $(position_client).val("Incorrecte");
-            }
-        }
-    })
+    $(".monto").blur(validate_blur_amount);
 
     // Accions del boto
     $("#modify").click(()=>{
         accounts = [];
-        var provisional_accounts = [];
+        provisional_accounts = [];
 
         class_length = $(".monto").length;
 
@@ -88,7 +54,7 @@ $().ready(function(){
         }
 
         if (counter > 0) {
-            $("#send-error").text("Camps incorrectes");
+            $("#send-error").text("Introdueix correctament les dades");
         }
         else{
             $("#send-error").text("");
@@ -104,28 +70,11 @@ $().ready(function(){
 
         // console.log(JSON.parse(localStorage.getItem("storageAccounts")));
 
-
-
-        //peticio post
-        /*$.ajax({
-            url: 'http://localhost:3000/send',
-            data: '',
-            type: 'POST',
-            dataType: 'json',
-
-            success : function(msg) {
-                console.log("Operacio " + msg);
-            },
-            error : function(jqXHR, status, error) {
-                alert('Disculpe, existió un problema al enviar');
-            },
-            complete : function(jqXHR, status) {
-                alert('Petición realizada en post');
-            }
-        })*/
     })
 
 })
+
+// Main Functions (index.js) ------------------------------------------------
 
 /**
  * 
@@ -183,6 +132,16 @@ function load_account(data) {
     // console.log(accounts);
 }
 
+function save_localStorage(accounts_to_save) {
+    
+}
+
+function show_window() {
+
+}
+
+// Secondary functions (index.js) ------------------------------------------------
+
 /**
  * 
  * @param date 
@@ -224,9 +183,19 @@ function changeTypeClient(amount){
     }
 }
 
+
+
 // Preguntas:
 
 // 1- Preguntar si al actualizar los objetos borramos la array y la volvemos a hacer o hacemos un push y lo añadimos
 // 2- Cada vez que guardemos en el local storage tenemos que borrar su contenido para no duplicar datos
 // 3- Como poner mi array de objetos dentro de un local storage, ya he intentado el json.stringyfi
 // 4- Como pasar nuestra array de objetos a JSON
+
+
+// Falta:
+
+// Guardar cuentas en local storage
+// Mandar al servidor las nuevas cuentas
+// Actualizar la base de datos
+// Mostrar ventana

@@ -66,22 +66,25 @@ function validation_date(date,position_date){
         return false;
     }
 }
-// function validation_date(date){
-//     var actualDate = new Date();
-//     valuesStart=date.split("-");
-    
-//     var dateGo = new Date(valuesStart[0],(valuesStart[1]-1),valuesStart[2]);
-//     var diference = dateGo.getTime()-actualDate.getTime();
 
-//     diference = diference/(1000*60*60*24*30);
-//     console.log(valuesStart);
+function validate_blur_amount() {
+    class_length = $(".monto").length;
 
-//     if(diference>0){
-//         console.log("esta mal");
-//         return false;
+        
+    for (let i = 1; i < class_length+1; i++) {
+        var position_amount  = "#amount" + i;
+        var value_amount  = $(position_amount).val();
+        var position_client  = "#client-type" + i;
 
-//     }else{
-//         return true;
+        if(validation_amount(value_amount)){
+            var type = changeTypeClient(value_amount);
 
-//     }
-// }
+            $(position_client).val(type);
+            $(position_client).css("border","1px solid green");
+        }
+        else{
+            $(position_client).css("border","1px solid red");
+            $(position_client).val("Incorrecte");
+        }
+    }
+}
