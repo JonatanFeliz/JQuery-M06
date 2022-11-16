@@ -55,6 +55,17 @@ function validation_DNI(dni,position_dni){
     }
 }
 
+function validation_date(date,position_date){
+    var pattern = /^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$/;
+    if (pattern.test(date)) {
+        $(position_date).css("border","1px solid green");
+        return true;
+    }
+    else{
+        $(position_date).css("border","1px solid red");
+        return false;
+    }
+}
 // function validation_date(date){
 //     var actualDate = new Date();
 //     valuesStart=date.split("-");

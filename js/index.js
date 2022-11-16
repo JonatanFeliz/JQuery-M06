@@ -2,7 +2,7 @@ var accounts = [];
 var flag_amount;
 var flag_name;
 var flag_DNI;
-
+var flag_date;
 
 $().ready(function(){
 
@@ -50,9 +50,11 @@ $().ready(function(){
     // Accions del boto
     $("#modify").click(()=>{
         accounts = [];
+        var provisional_accounts = [];
 
         class_length = $(".monto").length;
 
+        var counter = 0;
 
         for (let i = 1; i < class_length+1; i++) {
             var position_dni     = "#dni" + i;
@@ -68,12 +70,29 @@ $().ready(function(){
             var amount     = $(position_amount).val();
             var clientType = $(position_client).val();
             var entryDate  = $(position_date).val();
+            //console.log(entryDate);
 
-            validation_DNI(dni,position_dni);
-            validation_name(name,position_name);
-            validation_amount(amount,position_amount);
+            flag_DNI    = validation_DNI(dni,position_dni);
+            flag_name   = validation_name(name,position_name);
+            flag_amount = validation_amount(amount,position_amount);
+            flag_date   = validation_date(entryDate,position_date);
 
-            //accounts.push(new accountObj(i,dni,name,amount,entryDate,accounType,clientType,"Aquest es el meu compte"))
+            if(flag_DNI == false || flag_name == false 
+                || flag_amount == false || flag_date == false){
+                counter++;
+            }
+            else{
+                provisional_accounts.push(new accountObj(i,dni,name,amount,entryDate,accounType,clientType,"Aquest es el meu compte"))
+            }
+
+        }
+
+        if (counter > 0) {
+            $("#send-error").text("Camps incorrectes");
+        }
+        else{
+            $("#send-error").text("");
+            accounts = provisional_accounts;
         }
         console.log(accounts);
 
@@ -105,7 +124,6 @@ $().ready(function(){
             }
         })*/
     })
-
 
 })
 
@@ -159,10 +177,10 @@ function load_account(data) {
         $(position_date).val(transform_date(value.ENTRY_DATE));
 
         //afegir objecte a la variable global accounts
-        accounts.push(ObjAccount = new accountObj(i,value.DNI,value.DNI,value.AMOUNT,value.ENTRY_DATE,value.ACCOUNT_TYPE,value.CLIENT_TYPE,"Aquest es el meu compte"))
+        accounts.push(new accountObj(i,value.DNI,value.DNI,value.AMOUNT,value.ENTRY_DATE,value.ACCOUNT_TYPE,value.CLIENT_TYPE,"Aquest es el meu compte"))
         
     });
-
+    // console.log(accounts);
 }
 
 /**
@@ -175,11 +193,18 @@ function transform_date(date){
 
     var day   = ObjectDate.getDate();
 
-    var month = ObjectDate.getMonth();
+    var month = ObjectDate.getMonth()+1;
 
     var year  = ObjectDate.getFullYear();
 
-    return (month+1) + "-" + day + "-" + year;
+    if(day < 10){
+        day = "0" + day;
+    }
+    if(month < 10){
+        month = "0" + month;
+    }
+
+    return month + "-" + day + "-" + year;
 }
 
 /**
