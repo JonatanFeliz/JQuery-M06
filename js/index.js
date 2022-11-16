@@ -80,7 +80,7 @@ $().ready(function(){
 
 
         //peticio post
-        $.ajax({
+        /*$.ajax({
             url: 'http://localhost:3000/send',
             data: '',
             type: 'POST',
@@ -95,7 +95,7 @@ $().ready(function(){
             complete : function(jqXHR, status) {
                 alert('Petición realizada en post');
             }
-        })
+        })*/
     })
 
 
@@ -110,7 +110,7 @@ function load_account(data) {
 
     $.each(data, function( i, value ) {
         i++;
-        
+        var type_of_accounts = ["Savings account","Investement account","Personal account","Solidary account","Individual Savings Account","Fixed deposit account","Tax-Free Savings Account"];
         //variables amb nom dels camps
         var position_dni     = "#dni" + i;
         var position_name    = "#name" + i;
@@ -122,8 +122,16 @@ function load_account(data) {
         //Introduïr els valor de la BD als camps
         $(position_dni).val(value.DNI);
         $(position_name).val(value.NAME);
-        $(position_account).append("<option>"+ value.ACCOUNT_TYPE + "</option> <option>Savings account</option><option>Investement account</option><option>Personal account</option><option>Individual Savings Account</option><option>Solidary account</option><option>Fixed deposit account</option><option>Tax-Free Savings Account</option>")
-        $(position_account + " option:selected").attr('disabled','disabled').siblings().removeAttr('disabled');
+
+        for (let i = 0; i < type_of_accounts.length; i++) {
+            if (value.ACCOUNT_TYPE == type_of_accounts[i]) {
+                $(position_account).append("<option selected>"+ value.ACCOUNT_TYPE + "</option>");
+            }
+            else{
+                $(position_account).append("<option>"+ type_of_accounts[i]+"</option>");        
+            }
+        }
+        
         $(position_amount).val(value.AMOUNT);
         $(position_client).val(value.CLIENT_TYPE);
 
