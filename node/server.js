@@ -21,7 +21,7 @@ app.get('/getClients',(req,res)=>{
     database: "clients",
     user: "root",
     password: ""
-});
+  });
 
   con.connect(function(err) {
     console.log("Este " + err);
@@ -43,8 +43,46 @@ app.get('/getClients',(req,res)=>{
     con.end();
 })
 
-app.post('/send',(req,res)=>{
+app.post('/update',(req,res)=>{
   
+  var con = mysql.createConnection({
+    host: "localhost",
+    database: "clients",
+    user: "root",
+    password: ""
+  });
+  
+  console.log("estem a dins del post")
+    
+  con.connect(function(err){
+      console.log(err)
+      if(err){
+          console.log('Error connecting:'+err.stack)
+          return
+      }
+      //si la conexion ha ido bien
+      console.log('Connected as id '+ con.threadId)
+  })//cerramos connection.connect
+  //Step 2. Si estamos conectados, hacemos la query
+  /*for (let i = 0; i < res.length; i++) {
+    con.query('UPDATE CURRENT_ACCOUNT VALUES', function(error, results, field){
+      //si hay un error en la consulta
+      if(error){
+          res.status(400).send({resultats:null})
+      } else{//si todo OK
+          res.status(200).send({resultats: results})
+      }
+  })//end connection query
+  }*/
+  con.query('UPDATE CURRENT_ACCOUNT VALUES (res) WHERE (res.id) = 1;', function(error, results, field){
+      //si hay un error en la consulta
+      if(error){
+          res.status(400).send({resultats:null})
+      } else{//si todo OK
+          res.status(200).send({resultats: results})
+      }
+  })//end connection query
+  con.end();
 })
 
 app.listen(3000, ()=>{

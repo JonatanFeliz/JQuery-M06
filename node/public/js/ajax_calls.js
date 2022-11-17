@@ -19,10 +19,13 @@ function get_petition() {
 }
 
 
-function post_petition() {
+function post_petition(accounts_json) {
+
+    accounts_json = JSON.stringify(accounts_json);
+
     $.ajax({
-        url: 'http://localhost:3000/send',
-        data: '',
+        url: 'http://localhost:3000/update',
+        data: accounts_json,
         type: 'POST',
         dataType: 'json',
 

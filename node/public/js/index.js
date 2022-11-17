@@ -76,10 +76,12 @@ $().ready(function(){
             accounts = provisional_accounts;
             accounts_json = provisional_accounts_json;
             save_localStorage(accounts_json,"storageAccounts");
+
+            post_petition(accounts_json);
         }
 
         // console.log(accounts);
-        // console.log(accounts_json);
+         console.log(accounts_json);
 
     })
 
@@ -195,20 +197,13 @@ function changeTypeClient(amount){
 }
 
 
-
-// Preguntas:
-
-// 1- Preguntar si al actualizar los objetos borramos la array y la volvemos a hacer o hacemos un push y lo añadimos
-// 2- Cada vez que guardemos en el local storage tenemos que borrar su contenido para no duplicar datos
-// 3- Como poner mi array de objetos dentro de un local storage, ya he intentado el json.stringyfi
-// 4- Como pasar nuestra array de objetos a JSON
-
-
 // Falta:
 
-// Guardar cuentas en local storage
 // Mandar al servidor las nuevas cuentas
 // Actualizar la base de datos
 // Mostrar ventana
+
+
+// Arreglar:
 
 // Posiciones 2 y 3 del client type intercambiadas
