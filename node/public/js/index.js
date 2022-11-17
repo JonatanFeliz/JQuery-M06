@@ -137,7 +137,7 @@ function save_localStorage(accounts_to_save) {
 }
 
 function show_window() {
-
+    // https://www.jose-aguilar.com/blog/efecto-cargando-con-jquery-ajax/
 }
 
 // Secondary functions (index.js) ------------------------------------------------
