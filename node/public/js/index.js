@@ -1,5 +1,7 @@
 var accounts = [];
+var accounts_json = [];
 var provisional_accounts = [];
+var provisional_accounts_json = [];
 var flag_amount;
 var flag_name;
 var flag_DNI;
@@ -16,7 +18,9 @@ $().ready(function(){
     // Accions del boto
     $("#modify").click(()=>{
         accounts = [];
+        accounts_json = [];
         provisional_accounts = [];
+        provisional_accounts_json = [];
 
         class_length = $(".monto").length;
 
@@ -49,6 +53,17 @@ $().ready(function(){
             }
             else{
                 provisional_accounts.push(new accountObj(i,dni,name,amount,entryDate,accounType,clientType,"Aquest es el meu compte"))
+                let Object_account = {
+                    id: i,
+                    dni: dni,
+                    name: name,
+                    amount: amount,
+                    date: entryDate,
+                    accounType: accounType,
+                    clientType: clientType,
+                    description: "Aquest es el meu compte"
+                }
+                provisional_accounts_json.push(Object_account);
             }
 
         }
@@ -59,16 +74,12 @@ $().ready(function(){
         else{
             $("#send-error").text("");
             accounts = provisional_accounts;
+            accounts_json = provisional_accounts_json;
+            save_localStorage(accounts_json,"storageAccounts");
         }
-        console.log(accounts);
 
-        // var json_accounts = JSON.parse(accounts);
-        
-        // console.log(json_accounts);
-        // localStorage.setItem("storageAccounts",JSON.stringify(json_accounts));
-
-
-        // console.log(JSON.parse(localStorage.getItem("storageAccounts")));
+        // console.log(accounts);
+        // console.log(accounts_json);
 
     })
 
@@ -132,8 +143,8 @@ function load_account(data) {
     // console.log(accounts);
 }
 
-function save_localStorage(accounts_to_save) {
-    
+function save_localStorage(accounts_to_save,name_storage) {
+    localStorage.setItem(name_storage,JSON.stringify(accounts_to_save));
 }
 
 function show_window() {
@@ -199,3 +210,5 @@ function changeTypeClient(amount){
 // Mandar al servidor las nuevas cuentas
 // Actualizar la base de datos
 // Mostrar ventana
+
+// Posiciones 2 y 3 del client type intercambiadas
