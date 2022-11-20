@@ -68,15 +68,15 @@ function validation_date(date,position_date){
 }
 
 function validate_blur_amount() {
-    class_length = $(".monto").length;
+    var class_length = $(".monto").length;
 
         
     for (let i = 1; i < class_length+1; i++) {
         var position_amount  = "#amount" + i;
         var value_amount  = $(position_amount).val();
         var position_client  = "#client-type" + i;
-
-        if(validation_amount(value_amount)){
+        
+        if(validation_amount(value_amount,position_amount)){
             var type = changeTypeClient(value_amount);
 
             $(position_client).val(type);

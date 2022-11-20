@@ -17,12 +17,10 @@ $().ready(function(){
 
     // Accions del boto
     $("#modify").click(()=>{
-        accounts = [];
-        accounts_json = [];
         provisional_accounts = [];
         provisional_accounts_json = [];
 
-        class_length = $(".monto").length;
+        var class_length = $(".monto").length;
 
         var counter = 0;
 
@@ -72,12 +70,14 @@ $().ready(function(){
             $("#send-error").text("Introdueix correctament les dades");
         }
         else{
+            accounts = [];
+            accounts_json = [];
             $("#send-error").text("");
             accounts = provisional_accounts;
             accounts_json = provisional_accounts_json;
             save_localStorage(accounts_json,"storageAccounts");
 
-            post_petition(accounts_json);
+            //post_petition(accounts_json);
         }
 
         // console.log(accounts);
@@ -199,11 +199,11 @@ function changeTypeClient(amount){
 
 // Falta:
 
-// Mandar al servidor las nuevas cuentas
-// Actualizar la base de datos
-// Mostrar ventana
+/* 
+   - (Opcional): El validar amount onblur no recoge los campos del dinero de primeras.
+   - Arreglar amount, posiciones intercambiados 2 y 3
+   - Validar que dos dni no se repitan al tocar el boton
+   - Enviar los datos tipo json a node
+   - Actualizar la base de datos
+*/
 
-
-// Arreglar:
-
-// Posiciones 2 y 3 del client type intercambiadas
