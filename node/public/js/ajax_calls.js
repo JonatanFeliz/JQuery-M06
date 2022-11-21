@@ -11,9 +11,6 @@ function get_petition() {
         },
         error : function(jqXHR, status, error) {
             alert('Disculpe, existió un problema');
-        },
-        complete : function(jqXHR, status) {
-            alert('Petición realizada');
         }
     })
 }
@@ -31,12 +28,14 @@ function post_petition(accounts_json) {
 
         success : function(msg) {
             console.log("Operacio " + msg);
+
+            $("#load-response").fadeOut(1000);
+            $("#good-response").fadeIn(1000);
         },
         error : function(jqXHR, status, error) {
-            alert('Disculpe, existió un problema al enviar');
-        },
-        complete : function(jqXHR, status) {
-            alert('Petición realizada en post');
+
+            $("#load-response").fadeOut(1000);
+            $("#bad-response").fadeIn(1000);
         }
     })
 }

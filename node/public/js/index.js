@@ -15,6 +15,28 @@ $().ready(function(){
     //cambiar automaticament el camp client type
     $(".monto").blur(validate_blur_amount);
 
+    // $("#prueba").click(() => {
+    //     $("#load-response").fadeIn(1000);
+    //     $("#div_black").show();
+    // })
+
+    // $("#prueba2").click(() => {
+    //     $("#good-response").fadeIn(1000);
+    //     $("#div_black").show();
+    // })
+
+    // $("#prueba3").click(() => {
+    //     $("#bad-response").fadeIn(1000);
+    //     $("#div_black").show();
+    // })
+
+    $(".accept").click(() => {
+        $("#good-response").fadeOut(1000);
+        $("#bad-response").fadeOut(1000);
+        $("#div_black").hide();
+
+    })
+
     // Accions del boto
     $("#modify").click(()=>{
         provisional_accounts = [];
@@ -77,7 +99,9 @@ $().ready(function(){
             accounts_json = provisional_accounts_json;
             save_localStorage(accounts_json,"storageAccounts");
 
+            show_response_window();
             //post_petition(accounts_json);
+            
         }
 
         // console.log(accounts);
@@ -149,8 +173,11 @@ function save_localStorage(accounts_to_save,name_storage) {
     localStorage.setItem(name_storage,JSON.stringify(accounts_to_save));
 }
 
-function show_window() {
+function show_response_window() {
     // https://www.jose-aguilar.com/blog/efecto-cargando-con-jquery-ajax/
+
+    $("#load-response").fadeIn(1000);
+    $("#div_black").show();
 }
 
 // Secondary functions (index.js) ------------------------------------------------

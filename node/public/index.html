@@ -21,6 +21,25 @@
         <script src="js/index.js"></script>
     </head>
     <body>
+        <div id="div_black"></div>
+
+        <div id="load-response" class="loading">
+            <img src="img/load-image.gif" class="center" alt="loading">
+            <p>Wait please...</p>
+        </div>
+
+        <div id="good-response" class="loading">
+            <img src="img/good.png" class="center" alt="good-response">
+            <p>Update Succesfully</p>
+            <input type="button" class="accept activate" value="Accept">
+        </div>
+        
+        <div id="bad-response" class="loading">
+            <img src="img/bad.png" class="center" alt="bad-response">
+            <p>Error, Try again</p>
+            <input type="button" class="accept activate" value="Accept">
+        </div>
+
         <h2>These are the account of your bank</h2> 
         <h3>Form information</h3>
 
@@ -108,7 +127,10 @@
             <input type="text" id="date10" readonly><br>
         </div>
         <br><br>
-        <input type="button" class="space" id="modify" value="Modificar comptes">
+        <input type="button" class="space activate" id="modify" value="Modificar comptes">
+        <input type="button" class="activate" id="prueba" value="Prueba">
+        <input type="button" class="activate" id="prueba2" value="Prueb2">
+        <input type="button" class="activate" id="prueba3" value="Prueb3">
         <p id="send-error" class="space red"></p>
     </body>
 </html>
