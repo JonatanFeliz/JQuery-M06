@@ -24,7 +24,6 @@ app.get('/getClients',(req,res)=>{
   });
 
   con.connect(function(err) {
-    console.log("Este " + err);
     
     if (err) {
     console.error('Error connecting: ' + err.stack);
@@ -32,11 +31,10 @@ app.get('/getClients',(req,res)=>{
     }
     console.log('Connected as id ' + con.threadId);
     });
-
+    //query para seleccionar la tabla de la BBDD
     con.query("SELECT * FROM CURRENT_ACCOUNT", function (err, result, fields) {
       if (err) throw err;
       var json = JSON.stringify(result);
-      //console.log(json);
       res.send(json);
     });
     
@@ -44,12 +42,8 @@ app.get('/getClients',(req,res)=>{
 })
 
 app.post('/update',(req,res)=>{
-  //console.log("eooooo: ");
-  //console.log(req.body.cuentas);
   var accounts = [];
   accounts= JSON.parse(req.body.cuentas);
-  // console.log("Accounts 0: ");
-  // console.log(accounts[9]);
   var con = mysql.createConnection({
     host: "localhost",
     database: "clients",
@@ -57,10 +51,8 @@ app.post('/update',(req,res)=>{
     password: ""
   });
   
-  console.log("estem a dins del post")
     
   con.connect(function(err){
-      console.log(err)
       if(err){
           console.log('Error connecting:'+err.stack)
           return
@@ -70,10 +62,6 @@ app.post('/update',(req,res)=>{
   })//cerramos connection.connect
   
   //Step 2. Si estamos conectados, hacemos la query
-  // console.log(typeof(req.body));
-  // console.log(req.body);
-  //console.log("Envio Post " + req.body);
-  // console.log(req.body[0]);
 
   for (let i = 0; i < accounts.length; i++) {
     var sql = "UPDATE CURRENT_ACCOUNT SET DNI='" + accounts[i].dni + "', NAME = '" + accounts[i].name + "', ACCOUNT_TYPE = '" + accounts[i].accounType + "', AMOUNT='" +accounts[i].amount +"', CLIENT_TYPE='" +accounts[i].clientType +"', ENTRY_DATE='" +accounts[i].date +"';";

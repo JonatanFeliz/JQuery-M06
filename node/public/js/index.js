@@ -15,6 +15,7 @@ $().ready(function(){
     //cambiar automaticament el camp client type
     $(".monto").blur(validate_blur_amount);
 
+    //Accion de carga cuando hacemos click en el boton
     $(".accept").click(() => {
         $("#good-response").fadeOut(0);
         $("#bad-response").fadeOut(0);
@@ -45,7 +46,6 @@ $().ready(function(){
             var amount     = $(position_amount).val();
             var clientType = $(position_client).val();
             var entryDate  = $(position_date).val();
-            //console.log(entryDate);
 
             flag_DNI    = validation_DNI(dni,position_dni);
             flag_name   = validation_name(name,position_name);
@@ -89,8 +89,6 @@ $().ready(function(){
             
         }
 
-        // console.log(accounts);
-         console.log(accounts_json);
 
     })
 
@@ -151,7 +149,6 @@ function load_account(data) {
         accounts.push(new accountObj(i,value.DNI,value.DNI,value.AMOUNT,value.ENTRY_DATE,value.ACCOUNT_TYPE,value.CLIENT_TYPE,"Aquest es el meu compte"))
         
     });
-    // console.log(accounts);
 }
 
 function save_localStorage(accounts_to_save,name_storage) {
