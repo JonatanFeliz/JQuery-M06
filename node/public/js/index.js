@@ -12,10 +12,10 @@ $().ready(function(){
     // peticio get
     get_petition();
 
-    //cambiar automaticament el camp client type
+    //canviar automaticament el camp client type
     $(".monto").blur(validate_blur_amount);
 
-    //Accion de carga cuando hacemos click en el boton
+    // Amagar el div quan donem al boto aceptar
     $(".accept").click(() => {
         $("#good-response").fadeOut(0);
         $("#bad-response").fadeOut(0);
@@ -94,7 +94,7 @@ $().ready(function(){
 
 })
 
-// Main Functions (index.js) ------------------------------------------------
+// Funcions principals (index.js) ------------------------------------------------
 
 /**
  * 
@@ -139,7 +139,7 @@ function load_account(data) {
           });
         $(function(){
             $(position_date).datepicker({
-                dateFormat: "mm-dd-yy",
+                dateFormat: "yy-mm-dd",
                 maxDate: "-1"
             });
         })
@@ -151,25 +151,32 @@ function load_account(data) {
     });
 }
 
+/**
+ * 
+ * @param accounts_to_save 
+ * @param name_storage 
+ * Guarda l'array d'objectes al local storage
+ */
 function save_localStorage(accounts_to_save,name_storage) {
     localStorage.setItem(name_storage,JSON.stringify(accounts_to_save));
 }
 
+/**
+ * Mostra la pantalla de carrega
+ */
 function show_response_window() {
-    // https://www.jose-aguilar.com/blog/efecto-cargando-con-jquery-ajax/
-
     $("#load-response").fadeIn(1000);
     $("#div_black").show();
 }
 
-// Secondary functions (index.js) ------------------------------------------------
+// Funcions secundaries (index.js) ------------------------------------------------
 
 /**
  * 
  * @param date 
- * @returns Torna la data en format mm/dd/yyyy
+ * @returns Torna la data en format yyyy-mm-dd
  */
-function transform_date(date){
+ function transform_date(date){
     var ObjectDate = new Date(date);
 
     var day   = ObjectDate.getDate();
@@ -185,7 +192,7 @@ function transform_date(date){
         month = "0" + month;
     }
 
-    return month + "-" + day + "-" + year;
+    return year + "-" + month + "-" + day;
 }
 
 /**
@@ -204,14 +211,4 @@ function changeTypeClient(amount){
         return "Very rich client";
     }
 }
-
-
-// Falta:
-
-/* 
-   - (Opcional): El validar amount onblur no recoge los campos del dinero de primeras.
-   - Validar que dos dni no se repitan al tocar el boton
-   - Enviar los datos tipo json a node
-   - Actualizar la base de datos
-*/
 

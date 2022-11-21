@@ -1,7 +1,3 @@
-/**
- * Validacions per introduir dades a la BD
- */
-
 function validation_name(name,position_name){
     var pattern=/^[A-ZÑa-zñáéíóúàèòÁÉÍÓÚÀÈÒ'çÇ ]+$/;
     if(pattern.test(name) && name.length <= 30){
@@ -12,6 +8,7 @@ function validation_name(name,position_name){
         return false;
     }
 }
+
 
 function validation_amount(mount,position_amount){
     if(isNaN(mount) == false && mount > 0) {
@@ -56,7 +53,7 @@ function validation_DNI(dni,position_dni){
 }
 
 function validation_date(date,position_date){
-    var pattern = /^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$/;
+    var pattern = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/;
     if (pattern.test(date)) {
         $(position_date).css("border","1px solid green");
         return true;

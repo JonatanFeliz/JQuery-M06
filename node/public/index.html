@@ -23,17 +23,20 @@
     <body>
         <div id="div_black"></div>
 
+        <!--imatge carregant-->
         <div id="load-response" class="loading">
             <img src="img/load-image.gif" class="center" alt="loading">
             <p>Wait please...</p>
         </div>
 
+        <!--imatge correcte-->
         <div id="good-response" class="loading">
             <img src="img/good.png" class="center" alt="good-response">
             <p>Update Succesfully</p>
             <input type="button" class="accept activate" value="Accept">
         </div>
         
+        <!--imatge error-->
         <div id="bad-response" class="loading">
             <img src="img/bad.png" class="center" alt="bad-response">
             <p>Error, Try again</p>
@@ -42,7 +45,8 @@
 
         <h2>These are the account of your bank</h2> 
         <h3>Form information</h3>
-
+        
+        <!--camp dni-->
         <div id="dni" class="same-line space">
             <p>DNI</p>
             <input type="text" id="dni1" required><br>
@@ -57,6 +61,7 @@
             <input type="text" id="dni10" required><br>
         </div>
 
+        <!--camp name-->
         <div id="name" class="same-line space">
             <p>Name</p>
             <input type="text" id="name1" required><br>
@@ -71,6 +76,7 @@
             <input type="text" id="name10" required><br>
         </div>
         
+        <!--camp account-type-->
         <div id="account-type" class="same-line space">
             <p>Account type</p>
             <select id="account-type1"></select><br>
@@ -85,6 +91,7 @@
             <select id="account-type10"></select><br>
         </div>
         
+        <!--camp amount-->
         <div id="amount" class="same-line space">
             <p>Amount</p>
             <input type="text" id="amount1" class="monto" required><br>
@@ -99,6 +106,7 @@
             <input type="text" id="amount10" class="monto" required><br>
         </div>
         
+        <!--camp tipus de client-->
         <div id="client-type" class="same-line space">
             <p>Client type</p>
             <input type="text" id="client-type1" readonly><br>
@@ -113,6 +121,7 @@
             <input type="text" id="client-type10" readonly><br>
         </div>
         
+        <!--camp data-->
         <div id="date" class="same-line space">
             <p>Entry data</p>
             <input type="text" id="date1" readonly><br>
