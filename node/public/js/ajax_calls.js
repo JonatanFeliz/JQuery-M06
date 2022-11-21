@@ -1,6 +1,6 @@
 function get_petition() {
     $.ajax({
-        url: 'http://localhost:3000/getClients',
+        url: '/getClients',
         type: 'GET',
         dataType: 'json',
 
@@ -18,23 +18,23 @@ function get_petition() {
 
 function post_petition(accounts_json) {
 
-    accounts_json = JSON.stringify(accounts_json);
-
+    var accounts_json2 = JSON.stringify(accounts_json);
+    console.log("Accounts 2: " + accounts_json2);
     $.ajax({
-        url: 'http://localhost:3000/update',
-        data: accounts_json,
+        url: '/update',
+        data: {cuentas: accounts_json2},
         type: 'POST',
         dataType: 'json',
 
         success : function(msg) {
             console.log("Operacio " + msg);
 
-            $("#load-response").fadeOut(1000);
+            $("#load-response").hide();
             $("#good-response").fadeIn(1000);
         },
         error : function(jqXHR, status, error) {
 
-            $("#load-response").fadeOut(1000);
+            $("#load-response").hide();
             $("#bad-response").fadeIn(1000);
         }
     })

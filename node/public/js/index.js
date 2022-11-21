@@ -15,24 +15,9 @@ $().ready(function(){
     //cambiar automaticament el camp client type
     $(".monto").blur(validate_blur_amount);
 
-    // $("#prueba").click(() => {
-    //     $("#load-response").fadeIn(1000);
-    //     $("#div_black").show();
-    // })
-
-    // $("#prueba2").click(() => {
-    //     $("#good-response").fadeIn(1000);
-    //     $("#div_black").show();
-    // })
-
-    // $("#prueba3").click(() => {
-    //     $("#bad-response").fadeIn(1000);
-    //     $("#div_black").show();
-    // })
-
     $(".accept").click(() => {
-        $("#good-response").fadeOut(1000);
-        $("#bad-response").fadeOut(1000);
+        $("#good-response").fadeOut(0);
+        $("#bad-response").fadeOut(0);
         $("#div_black").hide();
 
     })
@@ -98,9 +83,9 @@ $().ready(function(){
             accounts = provisional_accounts;
             accounts_json = provisional_accounts_json;
             save_localStorage(accounts_json,"storageAccounts");
-
+            
             show_response_window();
-            //post_petition(accounts_json);
+            post_petition(accounts_json);
             
         }
 
@@ -228,7 +213,6 @@ function changeTypeClient(amount){
 
 /* 
    - (Opcional): El validar amount onblur no recoge los campos del dinero de primeras.
-   - Arreglar amount, posiciones intercambiados 2 y 3
    - Validar que dos dni no se repitan al tocar el boton
    - Enviar los datos tipo json a node
    - Actualizar la base de datos

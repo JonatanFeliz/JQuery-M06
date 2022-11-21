@@ -7,7 +7,7 @@ const app        = express()
 
 app.use(cors());
 
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.use('/', express.static(path.join(__dirname, 'public')))
 
@@ -44,7 +44,12 @@ app.get('/getClients',(req,res)=>{
 })
 
 app.post('/update',(req,res)=>{
-  
+  //console.log("eooooo: ");
+  //console.log(req.body.cuentas);
+  var accounts = [];
+  accounts= JSON.parse(req.body.cuentas);
+  // console.log("Accounts 0: ");
+  // console.log(accounts[9]);
   var con = mysql.createConnection({
     host: "localhost",
     database: "clients",
@@ -63,9 +68,31 @@ app.post('/update',(req,res)=>{
       //si la conexion ha ido bien
       console.log('Connected as id '+ con.threadId)
   })//cerramos connection.connect
+  
   //Step 2. Si estamos conectados, hacemos la query
-  /*for (let i = 0; i < res.length; i++) {
-    con.query('UPDATE CURRENT_ACCOUNT VALUES', function(error, results, field){
+  // console.log(typeof(req.body));
+  // console.log(req.body);
+  //console.log("Envio Post " + req.body);
+  // console.log(req.body[0]);
+
+  for (let i = 0; i < accounts.length; i++) {
+    var sql = "UPDATE CURRENT_ACCOUNT SET DNI='" + accounts[i].dni + "', NAME = '" + accounts[i].name + "', ACCOUNT_TYPE = '" + accounts[i].accounType + "', AMOUNT='" +accounts[i].amount +"', CLIENT_TYPE='" +accounts[i].clientType +"', ENTRY_DATE='" +accounts[i].date +"';";
+    console.log(sql);
+
+    con.query(sql, function(error, results, field){
+      //si hay un error en la consulta
+      if(error){
+          res.status(400).send({resultats:null})
+      } else{//si todo OK
+          res.status(200).send({resultats: results})
+      }
+    })//end connection query
+  }   
+  
+  // req.body.forEach(element => {
+  //   console.log(element);
+  // });
+    /* con.query("UPDATE CURRENT_ACCOUNT SET DNI='req.body[i].dni', NAME = 'res.name', ACCOUNT_TYPE , AMOUNT=res.amount, ", function(error, results, field){
       //si hay un error en la consulta
       if(error){
           res.status(400).send({resultats:null})
@@ -73,15 +100,15 @@ app.post('/update',(req,res)=>{
           res.status(200).send({resultats: results})
       }
   })//end connection query
-  }*/
-  con.query('UPDATE CURRENT_ACCOUNT VALUES (res) WHERE (res.id) = 1;', function(error, results, field){
+  } */
+  /* con.query('UPDATE CURRENT_ACCOUNT VALUES (res) WHERE (res.id) = 1;', function(error, results, field){
       //si hay un error en la consulta
       if(error){
           res.status(400).send({resultats:null})
       } else{//si todo OK
           res.status(200).send({resultats: results})
       }
-  })//end connection query
+  })//end connection query */
   con.end();
 })
 
